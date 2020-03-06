@@ -41,5 +41,17 @@ def ProblemC():
     else:
         print("Imposible")
 
+def ProblemE():
+    n, k = (int(el) for el in input().split())    
+    k = (k + 1) * 2 #число возможных подключений
+    if k >= n:
+        print(0)
+        return
+    else:
+        print((n - k + 1) // 2)
+        return
+
+
+
 if __name__ == "__main__":
-    ProblemC()
+    ProblemE()
