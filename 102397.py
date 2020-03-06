@@ -165,150 +165,73 @@ def ProblemH():
     return
 
 
-def ProblemG_():
-    """
-    https://codeforces.com/gym/102397/problem/G  
-    превышено время на 19м тесте - я уже не знаю что придумать, это третья ревизия метода и все три обламывались на 19м тесте
-
-    """
-    n, k = (int(el) for el in input().split())
-    m = [int(el) for el in input().split()]
-    b = [int(el) for el in input().split()]
- 
-    #n = 14
-    #k = 3
-    #m = [1,1,2,1,2,1,2,1,2,1,2,1,2,1]
-
-    M = B = 0
-    MTotalSet = set(m)
-    BTotalSet = set(b)
-    MSet = set()
-    BSet = set()
-    if k // 2 == k / 2:
-        km = kb = k // 2
-        if km in MTotalSet:
-            MSet.add(km)
-            Nm = m.count(km)
-            for i in range(1, Nm):
-                M += i
-        if kb in BTotalSet:
-            BSet.add(kb)
-            Nb = m.count(kb)
-            for i in range(1, Nb):
-                B += i        
-    for i in range(n - 1):               
-        if not (m[i] in MSet):
-            MSet.add(m[i])
-            if m[i] < k:
-                km = k - m[i]
-                Nm = 1
-                Nk = 0                
-                for j in range(i + 1, n):
-                    if m[j] == km:
-                        M += Nm
-                        Nk += 1
-                        MSet.add(km)                        
-                    elif m[j] == m[i]:                        
-                        M += Nk
-                        Nm += 1                         
-            if MSet == MTotalSet:
-                break
-
-    for i in range(n - 1):               
-        if not (b[i] in BSet):
-            BSet.add(b[i])
-            if b[i] < k:
-                kb = k - b[i]
-                Nb = 1
-                Nk = 0      
-                for j in range(i + 1, n):
-                    if b[j] == kb:
-                        B += Nb
-                        Nk += 1
-                        BSet.add(kb)                       
-                    elif b[j] == b[i]:                        
-                        B += Nk
-                        Nb += 1                         
-            if BSet == BTotalSet:
-                break
-            if B > M:
-                print('Bashar')
-                return
-    
-    if M == B:
-        print('Draw')
-    elif M > B:
-        print('Mahmoud')
-    else:
-        print('Bashar')
-    return
-
-def ProblemG_ListProcessing(List, N, Num):
-    """
-    метод выполняемый в рамках решение задачи G
-    """
-    n = N    
-    Res = 0
-
-    # для начала проверим есть ли в массиве элемент Num/2
-    if Num // 2 == Num / 2:
-        a = Num // 2
-        i = 0
-        Na = 0
-        while i < n:
-            if List[i] == a:
-                List.pop(i)
-                Na += 1
-                n -= 1
-                continue
-            i += 1
-        if Na > 1:
-            for i in range(Na):
-                Res += i
-    while n > 1:
-        a = List.pop(0)
-        n -= 1
-        if a >= Num:
-            i = 0
-            while i < n:
-                if List[i] == a:
-                    List.pop(i)
-                    n -= 1
-                    continue
-                i += 1
-            continue
-        
-        i = 0
-        b = Num - a
-        Na = 1
-        Nb = 0
-        while i < n:
-            if List[i] == a:
-                Na += 1
-                List.pop(i)
-                Res += Nb
-                n -= 1
-                continue
-            if List[i] == b:
-                Nb += 1
-                List.pop(i)
-                Res += Na
-                n -= 1
-                continue
-            i += 1
-    return Res
-
 def ProblemG():
     """
     https://codeforces.com/gym/102397/problem/G      
-
+    првышено время выполнения на 19м тесте
     """
+
+    def ListProcessing(List, N, Num):
+        """
+        метод выполняемый в рамках решение задачи G
+        """
+        n = N    
+        Res = 0
+
+        # для начала проверим есть ли в массиве элемент Num/2
+        if Num // 2 == Num / 2:
+            a = Num // 2
+            i = 0
+            Na = 0
+            while i < n:
+                if List[i] == a:
+                    List.pop(i)
+                    Na += 1
+                    n -= 1
+                    continue
+                i += 1
+            if Na > 1:
+                for i in range(Na):
+                    Res += i
+        while n > 1:
+            a = List.pop(0)
+            n -= 1
+            if a >= Num:
+                i = 0
+                while i < n:
+                    if List[i] == a:
+                        List.pop(i)
+                        n -= 1
+                        continue
+                    i += 1
+                continue
+        
+            i = 0
+            b = Num - a
+            Na = 1
+            Nb = 0
+            while i < n:
+                if List[i] == a:
+                    Na += 1
+                    List.pop(i)
+                    Res += Nb
+                    n -= 1
+                    continue
+                if List[i] == b:
+                    Nb += 1
+                    List.pop(i)
+                    Res += Na
+                    n -= 1
+                    continue
+                i += 1
+        return Res
+
     n, k = (int(el) for el in input().split())
     m = [int(el) for el in input().split()]
     b = [int(el) for el in input().split()]
     
-    M = ProblemG_ListProcessing(m, n, k)
-    B = ProblemG_ListProcessing(b, n, k)
+    M = ListProcessing(m, n, k)
+    B = ListProcessing(b, n, k)
     
     
     if M == B:
