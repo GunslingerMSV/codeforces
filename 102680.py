@@ -112,21 +112,39 @@ def problemE():
 def problemF():
     """
     https://codeforces.com/gym/102680/problem/F
+    полное решение
     """
-    n, u = (int(el) for el in input().split())
-    U = [0] * u
-    for i in range(u):
-        U[i] = [int(el) for el in input().split()]
+    n, U = (int(el) for el in input().split())
+    u = [0] * U
+    for i in range(U):
+        u[i] = [int(el) for el in input().split()]
 
-    for i in range(1, n + 1, 1):
-        flag = True
-        for j in range(u):
-            if U[j][0] <= i and U[j][1] >= i:
-                flag = False
-        if flag:
-            print(i)
-            break
+    res = [[1, n]]
     
+    for i in range(U):
+        for j in range(len(res)):
+            if u[i][1] < res[j][0]:                                                     # ( ) [ ] ->     [ ]
+                pass
+            elif u[i][0] < res[j][0] and u[i][1] >= res[j][0] and u[i][1] <= res[j][1]: # ( [ )  ] ->      [ ]
+                res[j][0] = u[i][1] + 1
+            elif res[j][0] <= u[i][0] and res[j][1] >= u[i][1]:                         # [  ( )  ] -> [ ]   [ ]
+                if u[i][1] + 1 <= res[j][1]:
+                    res.insert(j + 1, [u[i][1] + 1, res[j][1]])
+                res[j][1] = u[i][0] - 1
+            elif res[j][0] <= u[i][0] and res[j][1] >= u[i][0] and res[j][1] < u[i][1]: # [  ( ] ) -> [ ]
+                res[j][1] = u[i][0] - 1                
+            elif u[i][0] > res[j][1]:                                                   # [ ] ( ) -> [ ]
+                pass
+            
+            if res[j][0] > res[j][1]:
+                res[j] = [0, 0]
+    
+    for i in range(len(res)):
+        if res[i] == [0, 0]:
+            continue
+        print(res[i][0])
+        break
+
 
 if __name__ == "__main__":
     problemF()
