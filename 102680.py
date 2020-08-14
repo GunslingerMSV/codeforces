@@ -145,7 +145,52 @@ def problemF():
         print(res[i][0])
         break
 
+def problemG():
+    """
+    https://codeforces.com/gym/102680/problem/G
+    """
+    t = int(input())
+    n = []
+    m = []
+    for i in range(t):
+        n.append(0)
+        m.append(0)
+        n[i], m[i] = (int(el) for el in input().split())
+#        for j in range(m[i]):
+
+def problemH():
+    """
+    https://codeforces.com/gym/102680/problem/H
+    полное решение
+    """
+    t = int(input())
+    T = [0] *t
+    for i in range(t):
+        T[i] = int(input())
+    
+    
+
+    s = [True]
+    for i in range(t):
+        a = 1
+        j = 0
+        while a < T[i]:
+            a *= 2
+        while a != 1:
+            if a // 2 < T[i]:
+                T[i] -= (a //2)
+                a //= 2
+                j += 1
+            else:
+                a //= 2
+        if j % 2 == 0:
+            print("Red")
+        else:
+            print("Blue")
+
+
 
 if __name__ == "__main__":
-    problemF()
+    problemH()
+    
 
