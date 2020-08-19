@@ -3,7 +3,7 @@
 https://codeforces.com/gym/102189
 """
 
-def ProblemA():
+def problemA():
     """
     https://codeforces.com/gym/102189/problem/A
     полное решение
@@ -13,7 +13,7 @@ def ProblemA():
 
     print(a * x + b * y)
 
-def ProblemC():
+def problemC():
     """
     https://codeforces.com/gym/102189/problem/C
     полное решение
@@ -41,7 +41,7 @@ def ProblemC():
     else:
         print("Imposible")
 
-def ProblemE():
+def problemE():
     """
     https://codeforces.com/gym/102189/problem/E
     полное решение
@@ -55,84 +55,205 @@ def ProblemE():
         print((n - k + 1) // 2)
         return
 
-def ProblemB():
+def problemB():
     """
     https://codeforces.com/gym/102189/problem/B
-    так как почти на 2 недели забросил - не могу вернуться в старый код
-    буду переделывать
+    превышение лимита врамени на тесте 5. Проблема КМК в скорости сортировок массивов. буду переделывать
     """
-    Separator = '|'
-    Space = '.'
-    TitlePlace = 'Place'
-    TitleName = 'Name'
-    TitleScore = 'Score'
-                        
-    #n = 6
-    #DataArr = [['Second1', 500, '500', ''], ['Third', 200, '200', ''], ['fourth2', 24, '24', ''], ['First', 1000, '1000', ''], ['Fourth1', 24, '24', ''], ['Second2', 500, '500', '']]#, ['Fifth', 5, '5', '']]
-    
     n = int(input())    
-    DataArr = [0] * n
+    name = [''] * n
+    score = [0] * n
+    place = [''] * n
+
     for i in range(n):
-        N, S = (el for el in input().split())
-        DataArr[i] = [N, int(S), S, '']            
+        name[i], score[i] = (el for el in input().split())
+        score[i] = int(score[i])
+
     
-    MaxScoreLen = len(TitleScore)
-    for i in range(n):        
-        ScoreLen = len(DataArr[i][2])
-        if ScoreLen > MaxScoreLen:
-            MaxScoreLen = ScoreLen
-    DataList = dict()
-    for i in range(n):        
-        DataArr[i][2] = '0' * (MaxScoreLen - len(DataArr[i][2])) + DataArr[i][2]
-        DataArr[i][3] = DataArr[i][2] + DataArr[i][0].upper()
-        DataList[DataArr[i][3]] = [DataArr[i][0], DataArr[i][1]] 
-        DataArr[i] = DataArr[i][3]
-    DataArr.sort()
-    DataArr.reverse()
+    #name = ['Petr','tourist','Bredor','dZ','dx','Dy','pressF','user']
+    #score = [100,100,9999,5,5,5,0,35]
+
+    placeLen = 5
+    nameLen = 4
+    scoreLen = 5    
+    placeTitle = 'Place'
+    nameTitle = 'Name'
+    scoreTitle = 'Score' 
+    
+    
+
+    # занесем данные в словарь
+    dictData = dict()
+    for i in range(n):
+        if score[i] in dictData:
+            dictData[score[i]].append(name[i])
+        else:
+            dictData[score[i]] = [name[i]]
+
+    sortScore = list(dictData.keys())
+    sortScore.sort()
+    sortScore.reverse()
     
     i = 0
-    Place = 1
-    while i < n:
-        for j in range(i, n):
-            if DataList[DataArr[i]][1] == DataList[DataArr[j]][1]:
-                continue
-            j -= 1
-            break                
-        if i == j:
-            DataArr[i] = [str(Place), DataList[DataArr[i]][0], str(DataList[DataArr[i]][1])]
-            Place += 1
+    placeStr = ''
+    for scoreKey in sortScore:
+        dictData[scoreKey].sort(key=str.lower)
+        if len(dictData[scoreKey]) == 1:
+            placeStr = str(i + 1)
         else:
-            strPlace = str(Place) + '-' + str(Place + j - i) 
-            for k in range(i, j + 1):
-                DataArr[k] = [strPlace, DataList[DataArr[k]][0], str(DataList[DataArr[k]][1])]
-            Place += (j - i + 1)        
-        i = j + 1
+            placeStr = str(i + 1) + '-' + str(i + len(dictData[scoreKey]))
+        for nameKey in dictData[scoreKey]:
+            score[i] = str(scoreKey)
+            if len(score[i]) > scoreLen : scoreLen = len(score[i])
+            name[i] = nameKey
+            if len(name[i]) > nameLen : nameLen = len(name[i])
+            place[i] = placeStr
+            if len(place[i]) > placeLen : placeLen = len(place[i])
+            i += 1
+    place.insert(0, placeTitle)
+    name.insert(0, nameTitle)
+    score.insert(0, scoreTitle)
+    for i in range(n + 1):
+        for j in range(placeLen - len(place[i])) : place[i] = '.' + place[i]
+        place[i] = '|' + place[i]
+        for j in range(nameLen - len(name[i])) : name[i] += '.'
+        for j in range(scoreLen - len(score[i])) : score[i] += '.'
+        score[i] += '|'
+
+    
+    for i in range(n + 1):
+        print(place[i], name[i], score[i], sep='|')
+
+def problemG():
+    """
+    https://codeforces.com/gym/102189/problem/G
+    полное решение
+    """
+    a, b = (int(el) for el in input().split())
+    p= [int(el) for el in input().split()]
+    #a, b= 1, 1
+    #p = [33, 33, 33, 1]
+
+    x = y = 0
+    for i in range(4) :
+        for j in range(4) :
+            if i == j : continue
+            if 2 * p[i] == 100 - 2 * p[j]:
+                for k in range(4) :
+                    if k == i or k == j : continue
+                    for l in range(4) :
+                        if l == i or l == j : continue
+                        if k == l : continue
+                        if 2 * p[l] == 100 - 2 * p[k] :
+                            x = 2 * p[i] * a / 100
+                            y = 2 * p[k] * b / 100
+                            break
+    
+    if x != 0 and y != 0 :
+        print('YES')
+        print(x)
+        print(y)
+    else:
+        print('NO')
+
+def problemD_1():
+    """
+    https://codeforces.com/gym/102189/problem/D
+    решение брутфорсом- дает перерасход времени на тесте 23
+    """
+    n, m = (int(el) for el in input().split())
+    func = [['', '', '']] * m
+    for i in range(m):
+        func[i] = [el for el in input().split()]
+        func[i][1] = int(func[i][1])
+        func[i][2] = int(func[i][2])
+    pos = int(input())
+
+    #n, m = 5, 4
+    #func = [['', '', '']] * m
+    #func[0] = ['inverse', 1, 3]
+    #func[1] = ['reverse', 2, 5]
+    #func[2] = ['reverse', 1, 3]
+    #func[3] = ['inverse', 2, 4]
+    #pos = 3
+
+    d = [0] * (n + 1)
+    for i in range(1, n + 1) :
+        d[i] = i
+
+    for i in range(m):
+        if func[i][0] == 'inverse' :
+            a = d[0 : func[i][1]]
+            b = [-el for el in d[func[i][1] : func[i][2] + 1]]
+            c = d[func[i][2] + 1 : len(d)]
+            d = a + b + c
+        elif func[i][0] == 'reverse' :
+            a = d[0 : func[i][1]]
+            b = d[func[i][1] : func[i][2] + 1]
+            c = d[func[i][2] + 1 : len(d)]
+            b.reverse();
+            d = a + b + c
         
-    MaxNameLen = len(TitleName)
-    MaxPlaceLen = len(TitlePlace)
-    for x in DataArr:
-        PlaceLen = len(x[0])
-        NameLen = len(x[1])
-        if PlaceLen > MaxPlaceLen:
-            MaxPlaceLen = PlaceLen
-        if NameLen > MaxNameLen:
-            MaxNameLen = NameLen
+    print(d[pos])
     
-    Place =  Space * (MaxPlaceLen - len(TitlePlace)) + TitlePlace
-    Name = TitleName + Space * (MaxNameLen - len(TitleName))
-    Score = TitleScore + Space * (MaxScoreLen - len(TitleScore))
-    print('', Place, Name, Score, '', sep=Separator)
+def problemD():
+    """
+    https://codeforces.com/gym/102189/problem/D
+    так как брутфорс просел по времени - попытаемся развернуть последовательность действий обратно и понять что с числом происходило
+    полное решение
+    """
+    n, m = (int(el) for el in input().split())
+    func = [['', '', '']] * m
+    for i in range(m):
+        func[i] = [el for el in input().split()]
+        func[i][1] = int(func[i][1])
+        func[i][2] = int(func[i][2])
+    pos = int(input())
     
-    for x in DataArr:
-        Place =  Space * (MaxPlaceLen - len(x[0])) + x[0]
-        Name = x[1] + Space * (MaxNameLen - len(x[1]))
-        Score = x[2] + Space * (MaxScoreLen - len(x[2]))
-        print('', Place, Name, Score, '', sep=Separator)    
+    mult = 1
+    for i in range(m - 1, -1, -1):
+        if func[i][1] <= pos and func[i][2] >= pos : #эта функция затрагивает наше число
+            if func[i][0] == 'inverse' : mult *= (-1)
+            else: pos = func[i][1] + func[i][2] - pos
+    print(pos * mult)
+
+def problemF():
+    """
+    https://codeforces.com/gym/102189/problem/F
+    ошибка на 15м тесте
+    """
+    n = int(input())
+    b = [int(el) for el in input().split()]
+    #n = 10
+    #b = [1, 1, 1,1,1,1,1,1,1,1]
     
-def Test():
-    a = ['DZ', 'DX', 'DY']
-    a.sort()
-    print(a)
+    even = odd = 0
+    for i in range(n) :
+        if i % 2 == 0 : #четные
+            even += b[i]
+        else : #нечетные
+            odd += b[i]
+    
+    a = [1] * (odd + even)
+    k = -1
+
+    if even >= odd :
+        for i in range(n) :
+            if i % 2 == 0 : k += b[i]               
+            else: 
+                for j in range(b[i]) :
+                    k += 1
+                    a[k] = 2
+    else:
+        for i in range(n) :
+            if i % 2 == 1 : k += b[i]
+            else :
+                for j in range(b[i]) :
+                    k += 1
+                    a[k] = 2                
+    
+    for i in range(len(a)): print(a[i], end=' ')
+    print()
 
 if __name__ == "__main__":
-    Test()
+    problemF()
