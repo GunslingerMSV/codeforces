@@ -168,5 +168,27 @@ def problemG() :
         outFile.write(str(x) + ' ' + str(y))
     
 
+def problemH() :
+    """
+    https://codeforces.com/gym/100092/problem/F
+    полное решение
+    """
+    with open("symposium.in", "r") as inFile:        
+        n = int(inFile.readline())
+        a = [int(el) for el in inFile.readline().split()]
+    
+    a.sort()
+    cnt1 = cnt2 = 1
+    if n > 1 :
+        for i in range(1, n) :
+            if a[i] < 2 * a[i - 1] : cnt1 += 1
+            else :
+                cnt2 = max(cnt1, cnt2)
+                cnt1 = 1
+        cnt2 = max(cnt1, cnt2)
+
+    with open("symposium.out", "w") as outFile:
+        outFile.write(str(cnt2))
+
 if __name__ == "__main__" :
-    problemG()
+    problemH()
