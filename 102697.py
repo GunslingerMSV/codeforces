@@ -331,10 +331,50 @@ def problem023() :
     print(v ** 2 / 2 / 9.8)
 
 
-def problem() :
+def problem024() :
     """
-    https://codeforces.com/gym/102697/problem/
+    https://codeforces.com/gym/102697/problem/024
+    полное решение
     """
+    name = [el for el in input().split()]
+    point2 = [int(el) for el in input().split()]
+    point3 = [int(el) for el in input().split()]
+    point1 = [int(el) for el in input().split()]
+    points = [0] * 2
+    for i in range(2) : points[i] = point1[i] + point2[i] * 2 + point3[i] * 3
+    print(name[points.index(max(points))])
+
+
+
+def problem025() :
+    """
+    https://codeforces.com/gym/102697/problem/025
+    полное решение
+    """
+    word = input()
+    n = int(input())
+    object = [''] * n
+    for i in range(n) : object[i] = input()
+
+    m = len(word)
+    errors = [0] * n
+    for i in range(n) :
+        if len(object[i]) != m :
+            errors[i] = m
+            continue
+        for j in range(m) :
+            if word[j] != object[i][j] : errors[i] += 1
+    print(object[errors.index(min(errors))])
+
+
+def problem026() :
+    """
+    https://codeforces.com/gym/102697/problem/026
+    """
+    rules = input()
+
+    print("Competition Rules:")
+    print(rules)
 
 
 def problem() :
@@ -344,5 +384,5 @@ def problem() :
 
 
 if __name__ == "__main__" :
-    problem023()
+    problem026()
     # 015 - неверный ответ на тесте 3
