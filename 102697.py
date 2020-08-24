@@ -370,12 +370,126 @@ def problem025() :
 def problem026() :
     """
     https://codeforces.com/gym/102697/problem/026
+    полное решение
     """
     rules = input()
 
     print("Competition Rules:")
     print(rules)
 
+
+def problem027() :
+    """
+    https://codeforces.com/gym/102697/problem/027
+    полное решение
+    """
+    n = int(input())
+    amount = 0
+    for i in range(n) :
+        payment = int(input())
+        amount += payment
+    print(amount)
+
+
+
+def problem028() :
+    """
+    https://codeforces.com/gym/102697/problem/028
+    полное рещение
+    """
+    n = int(input())
+    if n % 5 == 0 and n % 7 == 0 : print("YES")
+    else : print("NO")
+
+
+def problem029() :
+    """
+    https://codeforces.com/gym/102697/problem/029
+    полное решение
+    """
+    s = input()
+    n = 0
+    for i in range(len(s)) :
+        if s[i] == 'o' : n += 1
+    print(n)
+
+
+def problem030() :
+    """
+    https://codeforces.com/gym/102697/problem/030
+    полное решение
+    """
+    s = input()
+    win = int(s[0 : s.index('-')])
+    s = s[s.index('-') + 1 : len(s)]
+    #loss = int(s[0 : s.index('-')])
+    draw = int(s[s.index('-') + 1 : len(s)])
+    print(win * 3 + draw)
+
+
+def problem031() :
+    """
+    https://codeforces.com/gym/102697/problem/031
+    """
+    n = int(input())    
+    if n % 2 == 0 : print(2)
+    else : 
+        for i in range(3, int(n ** 0.5) + 1, 2) :
+            if n % i == 0:
+                print(i)
+                break
+
+
+def problem032() :
+    """
+    https://codeforces.com/gym/102697/problem/032
+    полное решение
+    """
+    n = int(input())
+    res = 1
+    for i in range(n) :
+        a, b = (int(el) for el in input().split())
+        res *= (abs(a - b) + 1)        
+    print(res)
+
+
+def problem033() :
+    """
+    https://codeforces.com/gym/102697/problem/033
+    полное решение
+    """
+    n = int(input())
+    made = attempte = 0
+    for i in range(n) :
+        m, a = (int(el) for el in input().split())
+        made += m
+        attempte += a
+    print(round(made / attempte * 100, 2))
+
+def problem034() :
+    """
+    https://codeforces.com/gym/102697/problem/034
+    """
+    n, k = (int(el) for el in input().split())
+    ladder = [int(el) for el in input().split()]
+    for i in range(1, n) :
+        if ladder[i] - ladder[i - 1] > k :
+            print("NO")
+            return
+    print("YES")
+
+
+def problem035() :
+    """
+    https://codeforces.com/gym/102697/problem/035
+    """
+    n = int(input())
+    arr = [int(el) for el in input().split()]
+
+    cnt = 0
+    st = set(arr)
+    for el in st : cnt += 1
+    print(cnt)
 
 def problem() :
     """
@@ -384,5 +498,5 @@ def problem() :
 
 
 if __name__ == "__main__" :
-    problem026()
+    problem035()
     # 015 - неверный ответ на тесте 3
