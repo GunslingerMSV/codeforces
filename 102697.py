@@ -491,12 +491,210 @@ def problem035() :
     for el in st : cnt += 1
     print(cnt)
 
+def problem036() :
+    """
+    https://codeforces.com/gym/102697/problem/036
+    """    
+    n = int(input())
+    s = ['', 0]
+    S = {}
+    for i in range(n):
+        s[0], s[1] = input().split()
+        s[1] = int(s[1])
+        S[s[0]] = s[1]    
+    t = int(input())
+    T = []
+    for i in range(t):
+        T.append(input())
+    for t in T:
+        print(S[t])
+
+def problem037() :
+    def gcd(a, b):
+        if b == 0 :
+            return a
+        else:
+            return gcd(b, a % b)
+    
+    """
+    https://codeforces.com/gym/102697/problem/037
+    """
+    a, b = (int(el) for el in input().split())
+    print(a * b // gcd(a, b))
+    
+    
+def problem038() :
+    """
+    https://codeforces.com/gym/102697/problem/038
+    """
+    n = int(input())
+    deck = [el for el in input().split()]    
+    deckTotal = []
+    for i in range(12) :
+        s = i + 2
+        if s == 1:
+            s = 'A'
+        elif s == 11 :
+            s = 'J'
+        elif s == 12 :
+            s = 'Q'
+        elif s == 13 :
+            s = 'K'
+        else : 
+            s = str(s)
+        deckTotal.append(s + 'C')
+        deckTotal.append(s + 'D')
+        deckTotal.append(s + 'H')
+        deckTotal.append(s + 'S')
+    deckTotal.append('AC')
+    deckTotal.append('AD')
+    deckTotal.append('AH')
+    deckTotal.append('AS')
+    deckSort = []    
+    for card in deckTotal:        
+        for i in range(n):
+            if card == deck[i]:
+                deckSort.append(card)                
+                deck.remove(card)
+                n-=1
+                break
+        if deck == [] :
+            break
+    s = ''
+    for card in deckSort :
+        s = s + ' ' + card
+    s = s.strip()
+    print(s)
+    
+def problem039() :
+    """
+    https://codeforces.com/gym/102697/problem/039
+    """
+    n = int(input())
+    s = []
+    for i in range(n) :
+        s.append(input())
+    for i in range(n) :
+        s[i] = s[i].replace('0', 'o')
+        s[i] = s[i].replace('1', 'i')
+        s[i] = s[i].replace('3', 'e')
+        s[i] = s[i].replace('4', 'a')
+        s[i] = s[i].replace('5', 's')
+        s[i] = s[i].replace('7', 't')
+        print(s[i])
+    
+def problem040() :
+    """
+    https://codeforces.com/gym/102697/problem/040
+    """
+    sudoku = list()
+    for i in range(9) :
+        sudoku.append([int(el) for el in input().split()])
+        
+    for i in range(1, 10) : 
+        for j in range(9) :
+            #проверяем горизонтали
+            c = 0
+            for k in range(9) :
+                if sudoku[j][k] == i :
+                    c += 1
+                    if c > 1 :
+                        return 'INVALID'
+            if c == 0 : 
+                return 'INVALID'
+            #проверяем вертикали
+            c = 0
+            for k in range(9) :
+                if sudoku[k][j] == i :
+                    c += 1
+                    if c > 1 :
+                        return 'INVALID'
+            if c == 0 : 
+                return 'INVALID'
+        #проверяем сектора
+        for j in range(3) :
+            for k in range(3) :
+                c = 0
+                for l in range(3) :
+                    for m in range(3) :
+                        if sudoku[3 * j + l][3 * k + m] == i :
+                            c += 1
+                            if c > 1 :
+                                return 'INVALID'
+                if c == 0 :
+                    return 'INVALID'
+    return 'VALID'
+
+
+def problem041() :
+    """
+    https://codeforces.com/gym/102697/problem/041
+    """
+    def sort041(lst):
+        """
+        сортировка списка результатов
+        """
+        b = True
+        while b : # сортируем по очкам
+            b = False
+            for i in range(len(lst) - 1) :
+                if lst[i][1] < lst[i + 1][1] :
+                    lst[i][0], lst[i + 1][0] = lst[i + 1][0], lst[i + 1][0]
+                    lst[i][1], lst[i + 1][1] = lst[i + 1][1], lst[i + 1][1]
+                    b = True
+        while b : # сортируем по названиям
+            b = False
+            for i in range(len(lst) - 1) :
+                if lst[i][1] == lst[i + 1][1] and lst[i][0] < lst[i + 1][0]:
+                    lst[i][0], lst[i + 1][0] = lst[i + 1][0], lst[i + 1][0]
+                    lst[i][1], lst[i + 1][1] = lst[i + 1][1], lst[i + 1][1]
+                    b = True
+        return lst
+
+
+    games = list()
+    n = int(input())
+    for i in range(n) :
+        games.append([input().split()])
+    #n = 6
+    #games.append('Germany Portugal W'.split())
+    #games.append('UnitedStates Ghana W'.split())
+    #games.append('Germany Ghana T'.split())
+    #games.append('UnitedStates Portugal T'.split())
+    #games.append('Germany UnitedStates W'.split())
+    #games.append('Portugal Ghana W'.split())
+    
+    teams = list()
+    for i in range(n) :
+        if not games[i][0] in teams :
+            teams.append(games[i][0])
+        if not games[i][1] in teams :
+            teams.append(games[i][1])
+    
+    result = {}    
+    for team in teams:
+        result[team] = 0
+    for game in games :
+        if game[2] == 'W' :
+            result[game[0]] += 3
+        else :
+            result[game[0]] += 1
+            result[game[1]] += 1
+    
+    finalResult = list()
+    for team in teams :
+        finalResult.append([team, result[team]])
+    finalResult = sort041(finalResult)
+       
+    for res in finalResult:
+        print(res[0], res[1])
+    
+
 def problem() :
     """
     https://codeforces.com/gym/102697/problem/
     """
 
-
 if __name__ == "__main__" :
-    problem035()
+    problem041()
     # 015 - неверный ответ на тесте 3
