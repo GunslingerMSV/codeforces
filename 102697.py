@@ -12,7 +12,6 @@ def problem001() :
     n = int(input())
     print(n ** 2)
 
-
 def problem002() :
     """
     https://codeforces.com/gym/102697/problem/002
@@ -21,7 +20,6 @@ def problem002() :
     a = int(input())
     b = int(input())
     print(a * b * 3)
-
 
 def problem003() :
     """
@@ -35,7 +33,6 @@ def problem003() :
         res += a
     print(res * 3)
 
-
 def problem004() :
     """
     https://codeforces.com/gym/102697/problem/004
@@ -48,7 +45,6 @@ def problem004() :
     for t in T :
         print((t - 2) * 180)
 
-
 def problem005() :
     """
     https://codeforces.com/gym/102697/problem/005
@@ -59,7 +55,6 @@ def problem005() :
     if n % 5 == 0 : print("Buzz", end='')
     print()
 
-
 def problem006() :
     """
     https://codeforces.com/gym/102697/problem/006
@@ -69,7 +64,6 @@ def problem006() :
     for i in range(4) :
         a[i] = int(input())
     print(((a[0] - a[2]) ** 2 + (a[1] - a[3]) ** 2) ** 0.5)
-
 
 def problem007() :
     """
@@ -82,7 +76,6 @@ def problem007() :
     dp = input()
     if dp == "PM" : h += 12
     print((h * 60 + m) * 60 + s)
-
 
 def problem008() :
     """
@@ -97,14 +90,12 @@ def problem008() :
         res += (a - b) ** 2
     print(res ** 0.5)
 
-
 def problem009() :
     """
     https://codeforces.com/gym/102697/problem/009
     полное решение )))
     """
     print("Hello CodeRams")
-
 
 def problem010() :
     """
@@ -114,7 +105,6 @@ def problem010() :
     a = int(input())
     b = int(input())
     print(a / b)
-
 
 def problem011() :
     """
@@ -126,7 +116,6 @@ def problem011() :
     for a in A : res += a
     print(res)
 
-
 def problem012() :
     """
     https://codeforces.com/gym/102697/problem/012
@@ -134,7 +123,6 @@ def problem012() :
     """
     n, k = (int(el) for el in input().split())
     print(n ** k)
-
 
 def problem013() :
     """
@@ -144,7 +132,6 @@ def problem013() :
     a = int(input())
     b = int(input())
     print(a * b / (a + b))
-
 
 def problem014() :
     """
@@ -159,7 +146,6 @@ def problem014() :
         for j in range(m) :
             if s[i][j] == 'x' : cnt += 1
     print(cnt)
-
 
 def problem015() :
     """
@@ -219,8 +205,6 @@ def problem015() :
         if path[i][len(path[i]) - 1] == 'Hotel' :
             minRoute = min(minRoute, len(path[i]))
     print(minRoute - 1)
-    
-    
 
 def problem016() :
     """
@@ -231,7 +215,6 @@ def problem016() :
     if planet == 'EARTH' : print(9.807)
     elif planet == 'MARS' : print(3.711)
 
-
 def problem017() :
     """
     https://codeforces.com/gym/102697/problem/017
@@ -239,7 +222,6 @@ def problem017() :
     """
     a, b = (int(el) for el in input().split())
     print(b, a)
-
 
 def problem018() :
     """
@@ -251,7 +233,6 @@ def problem018() :
     b = [0] * n
     for i in range(n) : a[i], b[i] = (int(el) for el in input().split())    
     for i in range(n) : print(a[i] / b[i])
-
 
 def problem019() :
     """
@@ -265,7 +246,6 @@ def problem019() :
     for i in range(n) :
         if m <= b[i] : cnt += 1
     print(cnt)
-
 
 def problem020() :
     """
@@ -283,7 +263,6 @@ def problem020() :
                 s[i] = s[i][0 : j - 1] + s[i][j] + s[i][j - 1] + s[i][j + 1 : len(s[i])]
         print(s[i])
 
-
 def problem021() :
     """
     https://codeforces.com/gym/102697/problem/021
@@ -292,7 +271,6 @@ def problem021() :
     n = int(input())
     m = int(input())
     print((n ** 2 - m ** 2) ** 0.5 + m)
-
 
 def problem022() :
     """
@@ -321,7 +299,6 @@ def problem022() :
                    
     print(A)
 
-
 def problem023() :
     """
     https://codeforces.com/gym/102697/problem/023
@@ -329,7 +306,6 @@ def problem023() :
     """
     v = float(input())
     print(v ** 2 / 2 / 9.8)
-
 
 def problem024() :
     """
@@ -343,8 +319,6 @@ def problem024() :
     points = [0] * 2
     for i in range(2) : points[i] = point1[i] + point2[i] * 2 + point3[i] * 3
     print(name[points.index(max(points))])
-
-
 
 def problem025() :
     """
@@ -366,7 +340,6 @@ def problem025() :
             if word[j] != object[i][j] : errors[i] += 1
     print(object[errors.index(min(errors))])
 
-
 def problem026() :
     """
     https://codeforces.com/gym/102697/problem/026
@@ -376,7 +349,6 @@ def problem026() :
 
     print("Competition Rules:")
     print(rules)
-
 
 def problem027() :
     """
@@ -390,8 +362,6 @@ def problem027() :
         amount += payment
     print(amount)
 
-
-
 def problem028() :
     """
     https://codeforces.com/gym/102697/problem/028
@@ -400,7 +370,6 @@ def problem028() :
     n = int(input())
     if n % 5 == 0 and n % 7 == 0 : print("YES")
     else : print("NO")
-
 
 def problem029() :
     """
@@ -412,7 +381,6 @@ def problem029() :
     for i in range(len(s)) :
         if s[i] == 'o' : n += 1
     print(n)
-
 
 def problem030() :
     """
@@ -426,7 +394,6 @@ def problem030() :
     draw = int(s[s.index('-') + 1 : len(s)])
     print(win * 3 + draw)
 
-
 def problem031() :
     """
     https://codeforces.com/gym/102697/problem/031
@@ -439,7 +406,6 @@ def problem031() :
                 print(i)
                 break
 
-
 def problem032() :
     """
     https://codeforces.com/gym/102697/problem/032
@@ -451,7 +417,6 @@ def problem032() :
         a, b = (int(el) for el in input().split())
         res *= (abs(a - b) + 1)        
     print(res)
-
 
 def problem033() :
     """
@@ -477,7 +442,6 @@ def problem034() :
             print("NO")
             return
     print("YES")
-
 
 def problem035() :
     """
@@ -521,8 +485,7 @@ def problem037() :
     """
     a, b = (int(el) for el in input().split())
     print(a * b // gcd(a, b))
-    
-    
+        
 def problem038() :
     """
     https://codeforces.com/gym/102697/problem/038
@@ -625,7 +588,6 @@ def problem040() :
                     return 'INVALID'
     return 'VALID'
 
-
 def problem041() :
     """
     https://codeforces.com/gym/102697/problem/041
@@ -639,15 +601,15 @@ def problem041() :
             b = False
             for i in range(len(lst) - 1) :
                 if lst[i][1] < lst[i + 1][1] :
-                    lst[i][0], lst[i + 1][0] = lst[i + 1][0], lst[i + 1][0]
-                    lst[i][1], lst[i + 1][1] = lst[i + 1][1], lst[i + 1][1]
+                    lst[i][0], lst[i + 1][0] = lst[i + 1][0], lst[i][0]
+                    lst[i][1], lst[i + 1][1] = lst[i + 1][1], lst[i][1]
                     b = True
+        b = True
         while b : # сортируем по названиям
             b = False
             for i in range(len(lst) - 1) :
-                if lst[i][1] == lst[i + 1][1] and lst[i][0] < lst[i + 1][0]:
-                    lst[i][0], lst[i + 1][0] = lst[i + 1][0], lst[i + 1][0]
-                    lst[i][1], lst[i + 1][1] = lst[i + 1][1], lst[i + 1][1]
+                if lst[i][1] == lst[i + 1][1] and lst[i][0] > lst[i + 1][0]:
+                    lst[i][0], lst[i + 1][0] = lst[i + 1][0], lst[i][0]                    
                     b = True
         return lst
 
@@ -655,7 +617,7 @@ def problem041() :
     games = list()
     n = int(input())
     for i in range(n) :
-        games.append([input().split()])
+        games.append(input().split())
     #n = 6
     #games.append('Germany Portugal W'.split())
     #games.append('UnitedStates Ghana W'.split())
@@ -663,7 +625,7 @@ def problem041() :
     #games.append('UnitedStates Portugal T'.split())
     #games.append('Germany UnitedStates W'.split())
     #games.append('Portugal Ghana W'.split())
-    
+    #print(games)
     teams = list()
     for i in range(n) :
         if not games[i][0] in teams :
@@ -687,8 +649,122 @@ def problem041() :
     finalResult = sort041(finalResult)
        
     for res in finalResult:
-        print(res[0], res[1])
+        print(res[0], res[1]) 
+
+def problem042() :
+    """
+    https://codeforces.com/gym/102697/problem/042
+    """
+    dictList = list()
+    codeList = list()
+    n = int(input())    
+    for i in range(n) :
+        dictList.append(input())
+    t = int(input())
+    for i in range(t) :
+        codeList.append(input())
+    #n = 8
+    #dictList.append('fantastic')
+    #dictList.append('funtastuc')
+    #dictList.append('hasty')
+    #dictList.append('taste')
+    #dictList.append('tasted')
+    #dictList.append('tastes')
+    #dictList.append('tasty')
+    #dictList.append('untasty')
+    #t = 3
+    #codeList.append('457')
+    #codeList.append('7457')
+    #codeList.append('74573')
     
+    codeMap = dict()    
+    codeMap['0'] = 'o'
+    codeMap['1'] = 'i'
+    codeMap['3'] = 'e'
+    codeMap['4'] = 'a'
+    codeMap['5'] = 's'
+    codeMap['7'] = 't'
+
+    decodeList = list()
+    for i in range(t) :
+        s = ''
+        for j in range(len(codeList[i])) :
+            s += codeMap[codeList[i][j]]
+        decodeList.append(s)
+
+    dictReforgeList = list()
+    for i in range(n) :
+        s = ''
+        for j in range(len(dictList[i])) :
+            if dictList[i][j] in codeMap.values() :
+                s += dictList[i][j]
+        dictReforgeList.append(s)
+    
+    for i in range(t) :
+        k = 0
+        answList = []
+        for j in range(n) :
+            if dictReforgeList[j] == decodeList[i] :
+                k += 1
+                answList.append(dictList[j])
+        print(k)
+        for j in range(k) :
+            print(answList[j])
+
+def problem043() :
+    """
+    https://codeforces.com/gym/102697/problem/043
+    """
+    departure = 'Syracuse'
+    arrival = 'SanFrancisco'
+    n = 9
+    budget = 120
+    flight = list()
+    flight.append('Syracuse NewYork 5'.split())
+    flight.append('Syracuse Detroit 5'.split())
+    flight.append('Syracuse Atlanta 20'.split())
+    flight.append('Atlanta Dallas 50'.split())
+    flight.append('Dallas Atlanta 30'.split())
+    flight.append('Dallas SanFrancisco 30'.split())
+    flight.append('Detroit Chicago 1'.split())
+    flight.append('Chicago SanFrancisco 30'.split())
+    flight.append('SanFrancisco NewYork 10'.split())
+    flight.append('NewYork Syracuse 10'.split())
+    minCost = 0
+    for i in range(n) : 
+        flight[i][2] = int(flight[i][2])
+        minCost += flight[i][2]
+        
+    # начальное заполнение путей вариантами полетов которыми можно улететь из места отправки
+    path = list()
+    arrivalPath = list()
+    for i in range(n) :
+        if flight[i][0] == departure :
+            path.append([i])
+    
+    for i in range(len(path)) :
+        for j in range(n) :
+            if flight[path[i][len(path[i]) - 1]][1] == flight[j][0] :
+                if flight[j][1] == arrival :
+                    arrivalPath.append([el for el in path[i]])
+                    arrivalPath[len(arrivalPath) - 1].append(j)
+                else : 
+                    flag = True
+                    for pathFlight in path[i] :
+                        if pathFlight[0] == flight[j][1] :
+                            flag = False
+                            break
+                    if flag :
+                        path.append([el for el in path[i]])
+                        path[len(path) - 1].append(j)
+        path[i] = []
+    while True :
+        if path.count([]) == 0 : break
+        path.remove([])
+
+
+    print(path)
+
 
 def problem() :
     """
@@ -696,5 +772,5 @@ def problem() :
     """
 
 if __name__ == "__main__" :
-    problem041()
+    problem043()
     # 015 - неверный ответ на тесте 3
